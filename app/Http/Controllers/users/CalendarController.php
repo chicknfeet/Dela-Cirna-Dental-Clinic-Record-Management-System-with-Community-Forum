@@ -19,12 +19,14 @@ class CalendarController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'description' => 'required|string',
             'date' => 'required|date',
             'time' => 'required|date_format:H:i',
         ]);
 
         $calendar = Calendar::create([
             'name' => $request->input('name'),
+            'description' => $request->input('description'),
             'date' => $request->input('date'),
             'time' => $request->input('time'),
         ]);
@@ -50,12 +52,14 @@ class CalendarController extends Controller
         
         $request->validate([
             'name' => 'required|string|max:255',
+            'description' => 'required|string',
             'date' => 'required|date',
             'time' => 'required|date_format:H:i',
         ]);
 
         $calendar->update([
             'name' => $request->input('name'),
+            'description' => $request->input('description'),
             'date' => $request->input('date'),
             'time' => $request->input('time'),
         ]);

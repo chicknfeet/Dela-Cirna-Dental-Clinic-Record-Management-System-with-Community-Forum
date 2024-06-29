@@ -9,6 +9,7 @@ class CommunityForumController extends Controller
 {
     public function index(){
         $communityforums = CommunityForum::all();
+        $communityforums = CommunityForum::paginate(10);
         return view('users.communityforum.communityforum', compact('communityforums'));
     }
 
@@ -18,15 +19,15 @@ class CommunityForumController extends Controller
 
     public function storeCommunityforum(Request $request){
         $request->validate([
-            'post' => 'required|string',
+            'topic' => 'required|string',
         ]);
 
         $communityforum = CommunityForum::create([
-            'post' => $request->input('post'),
+            'topic' => $request->input('topic'),
         ]);
 
         return redirect()->route('communityforum')
-            ->with('success', 'Post added successfully!');
+            ->with('success', 'Topic added successfully!');
     }
 
     public function deleteCommunityforum($id){
@@ -34,7 +35,7 @@ class CommunityForumController extends Controller
         $communityforum->delete();
 
         return back()
-            ->with('success', 'Post deleted successfully!');
+            ->with('success', 'Topic deleted successfully!');
     }
 
     public function updateCommunityforum($id){
@@ -47,31 +48,22 @@ class CommunityForumController extends Controller
         $communityforum = CommunityForum::findOrFail($id);
         
         $request->validate([
-            'post' => 'required|string',
+            'topic' => 'required|string',
         ]);
 
         $communityforum->update([
-            'post' => $request->input('post'),
+            'topic' => $request->input('topic'),
         ]);
 
         return redirect()->route('communityforum')
-            ->with('success', 'Post updated successfully!');
+            ->with('success', 'Topic updated successfully!');
     }
 
-    public function createComment(){
-        return view('users.communityforum.createComment');
-    }
+    public function showComment($communityforumId)
+    {
+        $communityforums = CommunityForum::findOrFail($communityforumId);
+        $comments = $communityforums->comments;
 
-    public function storeComment(Request $request){
-        $request->validate([
-            'post' => 'required|string',
-        ]);
-
-        $communityforum = CommunityForum::create([
-            'post' => $request->input('post'),
-        ]);
-
-        return redirect()->route('communityforum')
-            ->with('success', 'Comment added successfully!');
+        return view('users.communityforum.showComment', compact('communityforums', 'comments'));
     }
 }

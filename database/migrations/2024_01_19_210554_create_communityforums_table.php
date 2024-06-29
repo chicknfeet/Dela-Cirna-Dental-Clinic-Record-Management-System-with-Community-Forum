@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('communityforums', function (Blueprint $table) {
             $table->id();
-            $table->string('post');
+            $table->string('topic');
             $table->timestamps();
         });
     }

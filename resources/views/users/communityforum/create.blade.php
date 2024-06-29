@@ -20,18 +20,18 @@
         margin-top: 10px;
     }
 </style>
-<div class="container">
-        <h2>Create Post</h2>
+    <div class="container">
+        <h2>Create Topic</h2>
             @error('date')
                 <div style="color:red">{{ $message }}</div>
             @enderror
         <form method="post" action="{{ route('communityforum.store') }}">
             @csrf
             <div class="mb-3">
-                <input type="text" class="form-control" id="post" name="post" placeholder="What's on your mind?" required>
+                <input type="text" class="form-control" id="topic" name="topic" placeholder="What's on your mind?" required>
             </div>
             @csrf
-            <button class="btn btn-primary">Post</button>
+            <button class="btn btn-primary">Add Topic</button>
         </form>
 
         <a href="{{ route('communityforum') }}" class="btn btn-info mt-3">Back</a>

@@ -17,7 +17,7 @@ class RecordController extends Controller
     public function storeRecord(Request $request)
     {
         $request->validate([
-            'file' => 'string'
+            'file' => 'required|string'
         ]);
 
         $record = Record::create([
@@ -33,7 +33,7 @@ class RecordController extends Controller
         $records = $patientlist->records;
         $record = Record::findOrFail($recordId);
     
-        return view('patientlist.showRecord', compact('patientlist', 'records', 'record'));
+        return view('users.patientlist.showRecord', compact('patientlist', 'records', 'record'));
     }
 
     public function deleteRecord($patientlistId, $recordId)

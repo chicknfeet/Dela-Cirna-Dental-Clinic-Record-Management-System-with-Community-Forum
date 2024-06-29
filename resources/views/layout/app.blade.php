@@ -81,13 +81,25 @@
 
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 
-                @if(auth()->check() )
-                    <a href="{{route('patientlist')}}">Patient List</a>
-                    <a href="{{route('messages')}}">Messages</a>
-                    <a href="{{route('paymentinfo')}}">Payment Info</a>
-                    <a href="{{route('calendar')}}">Calendar</a>
-                    <a href="{{route('communityforum')}}">Community Forum</a>
-                    <a href="{{route('logout')}}">Log Out</a>
+                @if(auth()->check())
+                    @if(session('user_type') === 'admin')
+                        <a href="{{route('patientlist')}}">Patient List</a>
+                        <a href="{{route('messages')}}">Messages</a>
+                        <a href="{{route('paymentinfo')}}">Payment Info</a>
+                        <a href="{{route('calendar')}}">Calendar</a>
+                        <a href="{{route('communityforum')}}">Community Forum</a>
+                        <!-- Add other admin links here -->
+                    @elseif(session('user_type') === 'patient')
+                        <a href="{{ route('appointment') }}">Appointment</a>
+                        <a href="{{ route('messages') }}">Messages</a>
+                        <a href="{{ route('paymentinfo')}}">Payment Info</a>
+                        <a href="{{ route('calendar')}}">Calendar</a>
+                        <a href="{{ route('communityforum')}}">Community Forum</a>
+                        <!-- Add other patient links here -->
+                    @elseif(session('user_type') === 'dentistrystudent')
+                        <a href="{{ route('communityforum') }}">Community Forum</a>
+                    @endif
+                    <a href="{{ route('logout') }}">Log Out</a>
                 @else
                     <a href="{{route('login')}}">Login</a>
                 @endif

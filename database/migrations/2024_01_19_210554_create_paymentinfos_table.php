@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('paymentinfos', function (Blueprint $table) {
             $table->id();
             $table->string('patient');
-            $table->integer('totalbalance');
             $table->string('description');
             $table->integer('amount');
+            $table->integer('balance');
             $table->date('date');
             $table->timestamps();
         });

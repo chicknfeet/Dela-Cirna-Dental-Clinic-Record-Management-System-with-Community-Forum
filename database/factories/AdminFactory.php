@@ -19,6 +19,7 @@ class AdminFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_type' => 'admin',
             'name' => 'Administrator',
             'username' => 'admin',
             'password' => Hash::make('password'), // customize password

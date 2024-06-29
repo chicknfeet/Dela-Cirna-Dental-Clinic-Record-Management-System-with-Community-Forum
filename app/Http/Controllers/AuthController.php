@@ -16,14 +16,15 @@ class AuthController extends Controller
         return view('users.accounts.login');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $validate = $request->validate([
             'user_type' => 'required|in:admin,patient,dentistrystudent',
-            'username'=>'required|min:5|max:15',
+            'username' => 'required|min:5|max:15',
             'password' => 'required|string|min:8',
         ]);
 
-        $credentials = $request->only('username', 'password');
+        $credentials = $request->only('user_type', 'username', 'password');
         $userType = $request->input('user_type');
 
         if (Auth::attempt($credentials)) {
@@ -35,12 +36,10 @@ class AuthController extends Controller
                 return redirect()->route('appointment');
             } elseif ($userType === 'dentistrystudent') {
                 return redirect()->route('communityforum');
-            } else {
-                return redirect()->route('landingpage');
             }
-        } else {
-            return back()->withErrors(['username' => 'Invalid credentials']);
         }
+
+        return back()->withErrors(['username' => 'Invalid credentials']);
     }
 
     public function logout(){
@@ -55,7 +54,7 @@ class AuthController extends Controller
     
     public function signup(Request $request){
         $validate = $request->validate([
-            'user_type' => 'required|in:admin,patient,dentistrystudent',
+            'user_type' => 'required|in:patient,dentistrystudent',
             'name' => 'required|string|max:255',
             'username'=>'required|min:5|max:15',
             'password' => 'required|string|min:8',

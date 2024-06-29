@@ -20,17 +20,17 @@ class PaymentInfoController extends Controller
     public function storePayment(Request $request){
         $request->validate([
             'patient' => 'required|string',
-            'totalbalance' => 'required|integer',
             'description' => 'required|string',
             'amount' => 'required|integer',
+            'balance' => 'required|integer',
             'date' => 'required|date',
         ]);
 
         $payment = PaymentInfo::create([
             'patient' => $request->input('patient'),
-            'totalbalance' => $request->input('totalbalance'),
             'description' => $request->input('description'),
             'amount' => $request->input('amount'),
+            'balance' => $request->input('balance'),
             'date' => $request->input('date'),
         ]);
 
@@ -57,17 +57,17 @@ class PaymentInfoController extends Controller
         
         $request->validate([
             'patient' => 'required|string',
-            'totalbalance' => 'required|integer',
             'description' => 'required|string',
             'amount' => 'required|integer',
+            'balance' => 'required|integer',
             'date' => 'required|date',
         ]);
 
         $patient->update([
             'patient' => $request->input('patient'),
-            'totalbalance' => $request->input('totalbalance'),
             'description' => $request->input('description'),
             'amount' => $request->input('amount'),
+            'balance' => $request->input('balance'),
             'date' => $request->input('date'),
         ]);
 

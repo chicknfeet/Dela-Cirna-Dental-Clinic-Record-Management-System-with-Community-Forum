@@ -10,7 +10,7 @@ class communityforum extends Model
     protected $table = 'communityforums';
 
     protected $fillable = [
-        'post',
+        'topic',
     ];
 
 }

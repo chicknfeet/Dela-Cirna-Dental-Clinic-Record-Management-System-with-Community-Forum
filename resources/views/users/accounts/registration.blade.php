@@ -66,7 +66,7 @@
 
         @csrf
         <div>
-            <label for="user_type">{{ __('User Type') }}</label>
+            <label for="user_type">User Type</label>
             <select id="user_type" name="user_type">
                 <option value="patient">Patient</option>
                 <option value="dentistrystudent">Dentistry Student</option>
@@ -78,7 +78,7 @@
                     <span style="color:red">{{$message}}</span>
                 @enderror
             </label>
-            <input type="text" name="name" id="name" placeholder="Name">
+            <input type="text" name="name" id="name" placeholder="Name" required>
         </div>
         <div>
             <label for="username">
@@ -87,7 +87,7 @@
                     <span style="color:red">{{$message}}</span>
                 @enderror
             </label>
-            <input type="text" name="username" id="username" placeholder="Username">
+            <input type="text" name="username" id="username" placeholder="Username" required>
         </div>
         <div>
             <label for="password">
@@ -95,7 +95,7 @@
                     <span style="color:red">{{$message}}</span>
                 @enderror
             </label>
-            <input type="password" name="password" id="password" placeholder="Password">
+            <input type="password" name="password" id="password" placeholder="Password" required>
         </div>
         <br>
         

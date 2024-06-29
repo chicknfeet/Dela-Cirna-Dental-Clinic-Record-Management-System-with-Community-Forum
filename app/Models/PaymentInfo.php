@@ -9,7 +9,7 @@ class PaymentInfo extends Model
     protected $table = 'paymentinfos';
 
     protected $fillable = [
-        'patient', 'totalbalance', 'description', 'amount', 'date',
+        'patient', 'description', 'amount', 'balance', 'date',
     ];
 
 }

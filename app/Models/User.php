@@ -1,24 +1,26 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use Illuminate\Database\Eloquent\Model;
-
-class User extends Model
+class User extends Authenticatable
 {
+    
     protected $fillable = [
-       'user_type', 'name', 'username', 'password', 
+       'user_type', 'name', 'username', 'password',
     ];
 
-    public function getUserTypeAttribute($value){
-        if ($value === 'admin') {
-            return 'Admin';
-        } elseif ($value === 'patient') {
-            return 'Patient';
-        } elseif ($value === 'dentistrystudent') {
-            return 'Dentistry Student';
-        } else {
-            return 'Unknown';
-        }
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    public function patient()
+    {
+        return $this->hasOne(Patient::class);
+    }
+
+    public function dentistryStudent()
+    {
+        return $this->hasOne(DentistryStudent::class);
     }
 }

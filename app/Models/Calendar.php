@@ -9,7 +9,7 @@ class Calendar extends Model
     protected $table = 'calendars';
 
     protected $fillable = [
-        'name', 'date', 'time',
+        'name', 'description', 'date', 'time',
     ];
 
 }

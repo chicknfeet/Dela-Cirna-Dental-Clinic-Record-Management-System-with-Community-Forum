@@ -20,24 +20,22 @@
         margin-top: 10px;
     }
 </style>
-<div class="container">
-        <h2>Create Post</h2>
+    <div class="container">
+        <h2>Create Comment</h2>
             @error('date')
                 <div style="color:red">{{ $message }}</div>
             @enderror
-        <form method="post" action="{{ route('storeComment') }}">
+        <form method="post" action="{{ route('comment.store') }}">
             @csrf
             <div class="mb-3">
-                <input type="text" class="form-control" id="post" name="post" placeholder="What's on your mind?" required>
+                <input type="text" class="form-control" id="comment" name="comment" placeholder="What's on your mind?" required>
             </div>
             @csrf
-            <button class="btn btn-primary">Post</button>
+            <button class="btn btn-primary">Comment</button>
         </form>
-
-        <a href="{{ route('communityforum') }}" class="btn btn-info mt-3">Cancel</a>
     </div>
 @endsection
 
 @section('title')
-    Create Post
+    Create Comment
 @endsection

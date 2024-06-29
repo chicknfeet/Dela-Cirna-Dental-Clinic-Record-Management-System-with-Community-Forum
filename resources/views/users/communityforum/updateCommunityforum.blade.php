@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2>Update Post</h2>
+        <h2>Update Topic</h2>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -16,7 +16,7 @@
             @csrf
             @method('PUT')
             <div class="mb-3">
-                <input type="text" class="form-control" id="post" name="post" placeholder="What's on your mind?" value="{{ old('post', $communityforum->post) }}" required>
+                <input type="text" class="form-control" id="topic" name="topic" placeholder="What's on your mind?" value="{{ old('topic', $communityforum->topic) }}" required>
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
